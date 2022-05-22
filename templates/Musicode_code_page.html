@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Musicode</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Musicode_code_page_style.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+
+        <header class="header">
+            <a href="{{ url_for('code_page', filename='Musicode_code_page.html') }}" class="header-logo">
+                <h1>
+                    <img src="{{ url_for('static', filename='images/Logo.png') }}" class="logo" alt="Musicode">
+                </h1>
+            </a>
+
+            <p class="header-text">
+                Easily encrypt and decrypt audio files. 
+                No limit in file size, no registrations, no watermark. 
+                This service automatically encrypts and decrypts audio files.
+                When crypting you will receive a zip file - the encrypted version of yours, and a key file for future decrypting.
+                When decrypting you will receive a new file - the decrypted version of yours.
+            </p>
+
+            <div class="header-list">
+                <ul>
+                    <li class="list-item">
+                        <p>First choose if you want to crypt or decrypt audio files!</p>
+                    </li>
+                    
+                    <li class="list-item">
+                        <p>Then click UPLOAD FILES to upload a file!</p>
+                    </li>
+                    
+                    <li class="list-item">
+                        <p>Then click on DOWNLOAD to get a zip file with the crypted audio and the key!</p>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="page-files">
+            <div class="services">
+                <a id="code-file" class="services-input" href="{{ url_for('code_page', filename='Musicode_code_page.html') }}">
+                    <input type="submit" type="button" value="Crypt Audio Files"/>
+                </a>
+
+                <a id="decode-file" class="services-input" href="{{ url_for('decode_page', filename='Musicode_decode_page.html') }}">
+                    <input type="submit" type="button" value="Decrypt Audio Files"/>
+                </a>
+            </div>
+
+            <div class="files-action">
+
+                <form id="upload-form" method="post" action="/" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file" accept="audio/*" onchange="Submit()" required>
+                </form>
+
+                <div class="upload-clear">
+                    <label class="input-files" for="file"><i id="fa-fa-upload" class="fa fa-upload" aria-required="true"></i>UPLOAD FILES</label>
+                    <a href="{{ url_for('delete_files_encrypt')}}"><button class="clear-button" type="button" ><i class="fa fa-close"></i>CLEAR FILES</button></a>
+                </div>
+                
+                <div class="download">
+                    <a href="{{ url_for('download_encrypt')}}"><button class="download-button" type="button"><i class="fa fa-download"></i>DOWNLOAD</button></a>
+                </div>
+            </div>
+        </main>
+
+        <script src="{{ url_for('static', filename='scripts/Success.js') }}"></script>
+    </body>
+</html>
